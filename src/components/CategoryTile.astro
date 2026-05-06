@@ -1,0 +1,170 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  kicker: string;
+  summary: string;
+  tileLabel: string;
+  highlights: string[];
+  index: number;
+}
+
+const { href, title, kicker, summary, tileLabel, highlights, index } = Astro.props;
+const tileNumber = String(index + 1).padStart(2, '0');
+---
+
+<a class="tile" href={href}>
+  <span class="tile-number">{tileNumber}</span>
+  <div class="tile-copy">
+    <p class="tile-kicker">{kicker}</p>
+    <h2>{title}</h2>
+    <p class="tile-label">{tileLabel}</p>
+    <p class="tile-summary">{summary}</p>
+  </div>
+  <ul class="tile-highlights" aria-label={`${title} highlights`}>
+    {highlights.map((item) => <li>{item}</li>)}
+  </ul>
+</a>
+
+<style>
+  .tile {
+    position: relative;
+    display: grid;
+    align-content: center;
+    gap: 1rem;
+    min-height: 100%;
+    padding: 2rem 1.5rem 1.6rem;
+    border: 1px solid var(--line-strong);
+    background:
+      linear-gradient(180deg, rgba(26, 55, 42, 0.97), rgba(15, 32, 24, 0.97));
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    text-align: center;
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .tile::before,
+  .tile::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+
+  .tile::before {
+    inset: 0.6rem;
+    border: 1px solid rgba(247, 240, 221, 0.18);
+    opacity: 0.9;
+  }
+
+  .tile::after {
+    background:
+      radial-gradient(circle at 50% 18%, rgba(231, 182, 59, 0.14), transparent 28%),
+      linear-gradient(112deg, transparent 0 46%, rgba(255, 255, 255, 0.05) 49%, transparent 52%);
+    opacity: 0.75;
+  }
+
+  .tile:hover,
+  .tile:focus-visible {
+    transform: translateY(-10px);
+    border-color: rgba(231, 182, 59, 0.62);
+    box-shadow: 0 28px 50px rgba(23, 37, 30, 0.18);
+  }
+
+  .tile:hover::before,
+  .tile:focus-visible::before {
+    inset: 0.8rem;
+  }
+
+  .tile-number {
+    position: relative;
+    z-index: 1;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(247, 240, 221, 0.58);
+  }
+
+  .tile-copy,
+  .tile-highlights {
+    position: relative;
+    z-index: 1;
+  }
+
+  .tile-kicker,
+  .tile-label {
+    margin: 0;
+    color: rgba(231, 182, 59, 0.9);
+  }
+
+  .tile-kicker {
+    font-size: 0.8rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .tile h2 {
+    margin: 0.45rem 0 0.5rem;
+    font-family: var(--font-display);
+    font-size: clamp(2.35rem, 5vw, 3.45rem);
+    line-height: 0.95;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+
+  .tile-label {
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .tile-summary {
+    margin: 0.35rem auto 0;
+    max-width: 18rem;
+    color: rgba(247, 240, 221, 0.78);
+    line-height: 1.55;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .tile:hover .tile-summary,
+  .tile:focus-visible .tile-summary {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .tile-highlights {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tile-highlights li {
+    border: 1px solid rgba(247, 240, 221, 0.15);
+    padding: 0.45rem 0.7rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(247, 240, 221, 0.86);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 700px) {
+    .tile-summary {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

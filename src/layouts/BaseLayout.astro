@@ -1,0 +1,122 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aldrich&family=Barlow+Semi+Condensed:wght@400;500;600;700&family=Kalam:wght@400;700&family=Permanent+Marker&family=Special+Elite&family=Syne+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #09363e;
+    --bg-deep: #072a31;
+    --panel: rgba(9, 54, 62, 0.7);
+    --panel-strong: rgba(9, 54, 62, 0.88);
+    --line: rgba(243, 243, 243, 0.14);
+    --line-strong: rgba(243, 243, 243, 0.28);
+    --cream: #f3f3f3;
+    --yellow: #efb21e;
+    --yellow-soft: rgba(239, 178, 30, 0.82);
+    --green: #f3f3f3;
+    --green-soft: rgba(243, 243, 243, 0.78);
+    --ink: #f3f3f3;
+    --muted: rgba(243, 243, 243, 0.7);
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+    --font-display: "Aldrich", sans-serif;
+    --font-script: "Kalam", cursive;
+    --font-typewriter: "Special Elite", serif;
+    --font-body: "Barlow Semi Condensed", sans-serif;
+    --font-hero-subtitle-current: "Syne Mono", monospace;
+  }
+
+  html {
+    background:
+      radial-gradient(circle at 50% 42%, rgba(21, 91, 101, 0.34), transparent 34%),
+      radial-gradient(circle at 50% 115%, rgba(2, 15, 19, 0.62), transparent 30%),
+      linear-gradient(180deg, #114b55 0%, #09363e 34%, #082f36 72%, #041a20 100%);
+    color: var(--ink);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--ink);
+    font-family: var(--font-body);
+    position: relative;
+    overflow-x: hidden;
+    background: transparent;
+  }
+
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::before {
+    opacity: 0.1;
+    background-image:
+      radial-gradient(rgba(255, 255, 255, 0.18) 0.7px, transparent 0.9px),
+      radial-gradient(rgba(0, 0, 0, 0.2) 0.7px, transparent 0.95px);
+    background-position: 0 0, 11px 9px;
+    background-size: 13px 13px, 17px 17px;
+    mix-blend-mode: soft-light;
+  }
+
+  body::after {
+    opacity: 0.26;
+    background-image:
+      radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.08), transparent 26%),
+      radial-gradient(circle at 50% 86%, rgba(0, 0, 0, 0.22), transparent 34%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 24%, transparent 76%, rgba(0, 0, 0, 0.14));
+    mix-blend-mode: overlay;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input {
+    font: inherit;
+  }
+  </style>

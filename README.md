@@ -1,43 +1,34 @@
-# Astro Starter Kit: Minimal
+# Devin Baron Creative Services
+
+Single-page Astro site for an a la carte creative services brand. The content is set up so you can edit most of the copy and service offerings in MDX files instead of digging through layout code.
+
+## Run it locally
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Astro will start at `http://localhost:4321`.
 
-## 🚀 Project Structure
+## Where to edit things
 
-Inside of your Astro project, you'll see the following folders and files:
+- Homepage copy: `src/content/site/home.mdx`
+- Service categories and individual offerings: `src/content/services/*.mdx`
+- Page layout and styling: `src/pages/index.astro`
+- Shared shell and fonts: `src/layouts/BaseLayout.astro`
+- Portrait placeholder image: `public/images/self-portrait-placeholder.svg`
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Editing services
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Each file in `src/content/services/` represents one tile and one large section on the homepage.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- Change the intro text in the MDX body.
+- Change the tile text in the frontmatter fields like `summary`, `tileLabel`, and `highlights`.
+- Add or remove specific services in the `items` array.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Notes for later
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- The current portrait is a placeholder. Replace it with your real self-portrait when ready.
+- Vercel is not configured yet.
+- If you want a contact form, pricing, case studies, or separate service detail pages next, those can be layered on without changing the content structure much.

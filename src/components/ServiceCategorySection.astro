@@ -1,0 +1,116 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  kicker: string;
+  summary: string;
+  items: string[];
+  Content: any;
+}
+
+const { id, title, kicker, summary, items, Content } = Astro.props;
+---
+
+<section class="category-section" id={id}>
+  <div class="section-copy">
+    <p class="section-kicker">{kicker}</p>
+    <h2>{title}</h2>
+    <p class="section-summary">{summary}</p>
+    <div class="section-prose">
+      <Content />
+    </div>
+  </div>
+
+  <div class="section-services">
+    <p class="services-label">A la carte options</p>
+    <ul aria-label={`${title} services`}>
+      {items.map((item) => <li>{item}</li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .category-section {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 1.35rem;
+    max-width: 54rem;
+    margin: 0 auto;
+    padding: 0.25rem 0 0;
+    scroll-margin-top: 4rem;
+    text-align: center;
+  }
+
+  .section-copy,
+  .section-services {
+    position: relative;
+  }
+
+  .section-kicker,
+  .services-label {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--yellow-soft);
+  }
+
+  .category-section h2 {
+    margin: 0.5rem 0 0.55rem;
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 4.8rem);
+    line-height: 0.95;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+
+  .section-summary {
+    margin: 0 auto;
+    max-width: 32rem;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .section-prose {
+    margin-top: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .section-prose :global(p) {
+    margin: 0;
+  }
+
+  .section-services {
+    padding: 1.45rem;
+    border: 1px solid var(--line);
+    background: rgba(255, 250, 239, 0.54);
+    box-shadow: var(--shadow);
+  }
+
+  .section-services ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .section-services li {
+    padding: 0.8rem 0.85rem;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.42);
+    line-height: 1.45;
+  }
+
+  @media (max-width: 560px) {
+    .section-services ul {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
