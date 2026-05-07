@@ -2,7 +2,6 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 
 export default defineConfig({
-  site: "https://djbaron33.github.io",
-  base: "/dbcs/",
+  site: "https://devinbaron.com",
   integrations: [mdx()],
 });
